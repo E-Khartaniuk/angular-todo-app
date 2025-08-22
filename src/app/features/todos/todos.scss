@@ -1,0 +1,74 @@
+.container {
+  max-width: 1280px;
+  margin: 32px auto;
+  padding: 0 32px;
+}
+h1 {
+  margin: 0 0 16px;
+}
+.add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.add input {
+  flex: 1;
+}
+
+.input-prioity {
+  width: 120px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0 20px;
+  flex-wrap: wrap;
+}
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.left span {
+  width: 90%;
+}
+.done {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+button {
+  cursor: pointer;
+}
+
+.sort {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}

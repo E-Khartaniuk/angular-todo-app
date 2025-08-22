@@ -1,0 +1,85 @@
+<div class="container">
+  <h1>To-Do List</h1>
+
+  <!-- Add form -->
+  <form class="add" [formGroup]="form" (ngSubmit)="submit()">
+    <input class="form-control" formControlName="title" placeholder="Что нужно сделать?" />
+    <select class="form-select input-prioity" formControlName="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <button class="btn btn-outline-primary" type="submit" [disabled]="form.invalid">Add</button>
+  </form>
+
+  <!-- Filters and sorting panel -->
+  <div class="toolbar">
+    <div class="filters form-check">
+      <label class="form-check-label"
+        ><input
+          class="form-check-input"
+          type="radio"
+          name="f"
+          [checked]="todo.filter() === 'all'"
+          (change)="todo.filter.set('all')"
+        />
+        All</label
+      >
+      <label class="form-check-label"
+        ><input
+          class="form-check-input"
+          type="radio"
+          name="f"
+          [checked]="todo.filter() === 'active'"
+          (change)="todo.filter.set('active')"
+        />
+        Uncompleted</label
+      >
+      <label class="form-check-label"
+        ><input
+          class="form-check-input"
+          type="radio"
+          name="f"
+          [checked]="todo.filter() === 'completed'"
+          (change)="todo.filter.set('completed')"
+        />
+        Completed</label
+      >
+    </div>
+
+    <div class="sort">
+      <span>Sorting:</span>
+      <select class="form-select" [value]="todo.sort()" (change)="setSort($event)">
+        <option value="none">without sorting</option>
+        <option value="priority-asc">priority ↑</option>
+        <option value="priority-desc">priority ↓</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Task list -->
+  <ul class="list">
+    <li
+      class="shadow p-3 mb-2 bg-body-tertiary rounded"
+      *ngFor="let t of todo.visibleTasks(); trackBy: trackById"
+    >
+      <label class="left">
+        <input type="checkbox" [checked]="t.completed" (change)="todo.toggleCompleted(t.id)" />
+        <span [class.done]="t.completed">{{ t.title }}</span>
+      </label>
+
+      <div class="right">
+        <select class="form-select" [value]="t.priority" (change)="changePriority(t, $event)">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <button class="btn btn-outline-secondary" type="button" (click)="edit(t)">Edit</button>
+        <button class="btn btn-outline-danger" type="button" (click)="todo.deleteTask(t.id)">
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
